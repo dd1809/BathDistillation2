@@ -1,0 +1,1 @@
+java -jar C:\Users\Admin\IdeaProjects\BathDistillation1\BathDistillation2\out\artifacts\BathDistillation2_jar\BathDistillation2.jar
