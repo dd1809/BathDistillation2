@@ -1,0 +1,28 @@
+@font-face {
+    src: url('cmunobx.ttf');
+}
+.text{
+    -fx-font-family: "CMU Concrete";
+}
+.BigLabel{
+    -fx-font-size: 30;
+}
+.MiddleLabel{
+    -fx-font-size: 20;
+}
+.LittleLabel{
+    -fx-font-size: 16;
+}
+.button{
+    -fx-font-size: 16;
+}
+.text-field{
+    -fx-font-family: "CMU Concrete";
+    -fx-font-size: 14;
+}
+.check-box{
+    -fx-font-size: 14;
+}
+.axis{
+    -fx-font-size: 16;
+}
