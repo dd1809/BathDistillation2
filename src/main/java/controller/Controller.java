@@ -4,6 +4,7 @@ import model.*;
 import org.example.View;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -16,7 +17,7 @@ public class Controller {
     }
 
     private RegimeModel createModel(){
-        ArrayList<Double> input = view.getUserInputValues();
+        List<Double> input = view.getUserInputValues();
 
         RawMaterial rawMaterial = new RawMaterial(input.get(0), input.get(1));
 
@@ -29,7 +30,7 @@ public class Controller {
         return new RegimeModel(regimeEquations,50);
     }
 
-    public ArrayList<Double []> getData(){
+    public List<Double []> getData(){
      RegimeModel regimeModel = this.createModel();
 
         return IntStream.range(0, regimeModel.getTime().size())

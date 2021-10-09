@@ -8,23 +8,20 @@ import org.apache.commons.math3.ode.sampling.StepNormalizer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class RegimeModel {
 
     private final RegimeEquations equations;
     private final double endTime;
-    private final ArrayList <Double> time;
-    private final ArrayList <Double> potConcentration;
-    private final ArrayList <Double> condenserConcentration;
-    private final ArrayList <Double> factor;
+    private final List<Double> time = new ArrayList<>();
+    private final List <Double> potConcentration = new ArrayList<>();
+    private final List <Double> condenserConcentration = new ArrayList<>();
+    private final List <Double> factor = new ArrayList<>();
 
     public RegimeModel(RegimeEquations equations, double endTime){
         this.equations = equations;
         this.endTime = endTime;
-        time = new ArrayList <>();
-        potConcentration = new ArrayList <> ();
-        condenserConcentration = new ArrayList <>();
-        factor = new ArrayList<>();
         this.solve();
     }
 
@@ -61,12 +58,12 @@ public class RegimeModel {
         return initialCondition;
     }
 
-    public ArrayList<Double> getTime () {return time;}
+    public List<Double> getTime () {return time;}
 
-    public ArrayList<Double> getPotConcentration () {return potConcentration;}
+    public List<Double> getPotConcentration () {return potConcentration;}
 
-    public ArrayList<Double> getCondenserConcentration () {return condenserConcentration;}
+    public List<Double> getCondenserConcentration () {return condenserConcentration;}
 
-    public ArrayList<Double> getFactor(){return factor;}
+    public List<Double> getFactor(){return factor;}
 
 }
