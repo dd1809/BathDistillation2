@@ -14,6 +14,7 @@ import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -57,7 +58,7 @@ public class View implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        mainButton.setDisable(true);
+        mainButton.setDisable(false);
 
         addCheckBox.indeterminateProperty().setValue(false);
 
@@ -75,17 +76,15 @@ public class View implements Initializable {
         DecimalFormatSymbols separatorIsPaint = new DecimalFormatSymbols();
         separatorIsPaint.setDecimalSeparator('.');
 
-        textFields.forEach(textField -> {
-            textField.setTextFormatter(new TextFormatter<>(
-                    new FormatStringConverter<>(new DecimalFormat("###0.######", separatorIsPaint)),
-                    null,
-                    change -> {
-                        if (change.getControlNewText().matches("(\\d+\\.?\\d*)|([\\.\\d]\\d*)|^$")) {
-                            return change;
-                        }
-                        return null;
-                    }));
-        });
+        textFields.forEach(textField -> textField.setTextFormatter(new TextFormatter<>(
+                new FormatStringConverter<>(new DecimalFormat("###0.######", separatorIsPaint)),
+                null,
+                change -> {
+                    if (change.getControlNewText().matches("(\\d+\\.?\\d*)|([.\\d]\\d*)|^$")) {
+                        return change;
+                    }
+                    return null;
+                })));
 
         platesNumber.setTextFormatter(new TextFormatter<Double>(
                 new FormatStringConverter<>(new DecimalFormat("###0")),
@@ -142,11 +141,12 @@ public class View implements Initializable {
     @FXML
     private void pressed(){
 
-        ArrayList<Double[]> data = controller.getData();
+        List<Double[]> data = controller.getData();
 
         ObservableList<XYChart.Data<Double,Double>> dataObservableList = FXCollections.observableArrayList();
 
-        data.stream().map(i -> new XYChart.Data<>(i[0], i[1]))
+        data.stream()
+                .map(i -> new XYChart.Data<>(i[0], i[1]))
                 .forEach(dataObservableList::add);
 
         XYChart.Series<Double,Double> series = new XYChart.Series<>();
